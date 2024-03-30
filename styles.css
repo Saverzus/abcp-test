@@ -1,0 +1,271 @@
+/* 0. presstyles START */
+html {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Geologica', 'sans-serif' !important;
+}
+
+*,
+*::before,
+*:after {
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-font: "Roboto", sans-serif;
+    --primary-font-color: #fff;
+    --main-blue-color: #7FAFF7;
+    --main-white-color: #fff;
+
+    --container: clamp(360px, 100%, 1200px);
+    --headerColor: #7faff6;
+    --footerColor: #7faff6;
+
+    --wrapperColor: #c0dbd9;
+
+    --goodsContainerColor: #B3F95A;
+    --goodsItemColor: #8ad191;
+
+    --newsContainerColor: #88B5BF;
+    --newsItemColor: #0d89b0;
+
+    --buttonBackgroundColor: #a5c7f9;
+    --buttonColor: #fff;
+
+    --backdrop-color: #000;
+}
+
+.wrapper {
+    min-height: 100dvh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background: var(--wrapperColor);
+    width: var(--container);
+    margin: auto;
+    padding: 0 15px;
+}
+
+/* 0. presstyles END */
+
+/* 1. Header START */
+.header {
+    background: var(--headerColor);
+    padding: 30.5px 30px;
+    margin: 0 0 15px 0;
+}
+.header__button {
+    font-family: var(--primary-font);
+    text-decoration: none;
+    background: var(--buttonBackgroundColor);
+    color: var(--buttonColor);
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+}
+/* 1. Header END */
+
+/* 2. Main START */
+.main {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+/* 2. Main START */
+
+
+/* 2.1 Goods START */
+.goods {
+    background: var(--goodsContainerColor);
+}
+.goods__list {
+    list-style: none;
+    
+    display: -ms-grid;
+    
+    display: grid;
+    -ms-grid-columns: 390px 15px 590px 15px 160px;
+    grid-template-columns: 390px 590px 160px;
+    -ms-grid-rows: 198px 15px 198px;
+    grid-template-rows: repeat(2, 198px);
+    grid-auto-rows: 198px;
+    gap: 15px;
+
+    margin-bottom: 15px;
+    counter-reset: grid;
+}
+.goods__list > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+.goods__list > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+}
+.goods__list > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 5;
+}
+.goods__list > *:nth-child(4) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+}
+.goods__list > *:nth-child(5) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+}
+.goods__list > *:nth-child(6) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 5;
+}
+.goods__item {
+    background: var(--goodsItemColor);
+    font-family: var(--primary-font);
+    color: var(--primary-font-color);
+}
+
+.goods__item::before {
+    content: counter(grid);
+    counter-increment: grid;
+    font-size: 53px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
+}
+
+.goods__item:nth-child(4) {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / 3;
+}
+
+/* 2.1 Goods END */
+
+/* 2.2 News START */
+.news {
+    background: var(--newsContainerColor);
+    padding: 30px;
+    margin: 0 0 100px 0;
+}
+.news__list {
+    background: var(--newsContainerColor);
+    list-style: none;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 30px 1fr 30px 1fr 30px 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.news__item {
+    background: var(--newsItemColor);
+    aspect-ratio: 1.28;
+}
+/* 2.2 News END */
+
+
+/* 3. Footer START */
+.footer {
+    background: var(--footerColor);
+    min-height: 100px;
+}
+/* 3. Footer START */
+
+/* pop-up START */
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .6);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-transition: opacity .5s ease, visibility .5s ease;
+    -o-transition: opacity .5s ease, visibility .5s ease;
+    transition: opacity .5s ease, visibility .5s ease;
+}
+.overlay:target {
+    opacity: 1;
+    visibility: visible;
+}
+.overlay__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: default;
+}
+.popup {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    min-height: 100dvh;
+    padding: 15px;
+}
+.popup__body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    font-size: 53px;
+    color: var(--backdrop-color);
+    min-width: 400px;
+
+    min-height: 400px;
+    background: white;
+    position: relative;
+    font-family: var(--primary-font);
+}
+.popup__close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    font-size: 20px;
+    
+    background-color: var(--main-blue-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* pop-up END */
